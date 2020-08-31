@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    location /loaderio-${LOADERIO_TOKEN}/ {
+        try_files ${DOLLAR}uri @loaderio;
+    }
+
+    location /loaderio-${LOADERIO_TOKEN}.html {
+        try_files ${DOLLAR}uri @loaderio;
+    }
+
+    location /loaderio-${LOADERIO_TOKEN}.txt {
+        try_files ${DOLLAR}uri @loaderio;
+    }
+
+    location @loaderio {
+        return 200 'loaderio-${LOADERIO_TOKEN}';
+    }
+}
